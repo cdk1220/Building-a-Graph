@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class Graph : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public Transform pointPrefab;
+
+	void Awake () {
+		Instantiate(pointPrefab);
 	}
 }
