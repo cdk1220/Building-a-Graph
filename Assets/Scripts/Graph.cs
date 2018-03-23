@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Graph : MonoBehaviour {
 
-	public Transform pointPrefab;
+	public Transform pointPrefab;      //This is what is instantiated
+
+	[Range(15, 105)]
+	public int resolution = 15;		   //Number instantiated
 
 	void Awake () {
 		
@@ -18,7 +21,7 @@ public class Graph : MonoBehaviour {
 		position.z = 0;     
 		
 		//Visualizing f(x) = x
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < resolution; i++) {
 			Transform point = Instantiate(pointPrefab);
 			
 			//Position for f(x) = x
