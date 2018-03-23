@@ -82,12 +82,12 @@ public class Graph : MonoBehaviour {
 	}
 
     //Call this in Update() to visualize a sine function
-    float SineFunction(float x, float t) {
+    static float SineFunction(float x, float t) {
         return Mathf.Sin(Mathf.PI * (x + t));
     }
 
     //Call this in Update to visualize a complex a complex sine function
-    float MultiSineFunction(float x, float t)
+    static float MultiSineFunction(float x, float t)
     {
         float y = Mathf.Sin(Mathf.PI * (x + t));
         y += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
