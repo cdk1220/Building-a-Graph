@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Graph : MonoBehaviour {
 
-	public Transform pointPrefab;      //This is what is instantiated
+    //This is what is instantiated
+	public Transform pointPrefab;      
 
+    //Number instantiated which can now be changed in the IDE
 	[Range(15, 105)]
-	public int resolution = 15;		   //Number instantiated
+	public int resolution = 15;		 
+
+    //Gives the option to change between functions on the fly
+    [Range(0, 1)]
+    public int function;
 
 	//List to contain points created
 	List<Transform> points = new List<Transform>();
@@ -15,10 +21,22 @@ public class Graph : MonoBehaviour {
     //Calls every frame
 	void Update() {
 		
+        float t = Time.time;
+
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
-            position.y = MultiSineFunction(position.x, Time.time);
+
+            //Choose which functino to visualize
+            if (function == 0) {
+
+                position.y = SineFunction(position.x, t);
+            }
+            else {
+
+                position.y = MultiSineFunction(position.x, t);
+            }
+
 			point.localPosition = position;
 		}
 		
