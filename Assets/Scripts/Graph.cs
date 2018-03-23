@@ -12,17 +12,19 @@ public class Graph : MonoBehaviour {
 	//List to contain points created
 	List<Transform> points = new List<Transform>();
 
+    //Calls every frame
 	void Update() {
 		
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
-			position.y = Mathf.Sin(Mathf.PI * (position.x + Time.time));
+            position.y = SineFunction(position.x, Time.time);
 			point.localPosition = position;
 		}
 		
 	}
 	
+    //When the object is created
 	void Awake () {
 
 		//Make sure the resolution is odd so that the range(-1, 1) is fully
@@ -60,4 +62,9 @@ public class Graph : MonoBehaviour {
 			points.Add(point);
 		}
 	}
+
+    float SineFunction(float x, float t) {
+        return Mathf.Sin(Mathf.PI * (x + t));
+    }
+
 }
