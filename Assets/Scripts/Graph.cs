@@ -17,7 +17,6 @@ public class Graph : MonoBehaviour {
 			resolution = resolution + 1;
 		}
 		
-
 		//Scale of a cube
 		float step = 2 / ((float)resolution - 1);
 		Vector3 scale = Vector3.one * step;		
@@ -28,6 +27,7 @@ public class Graph : MonoBehaviour {
 		//Constant as we dont deal with the z plane
 		position.z = 0;     
 		Debug.Log(step);
+		
 		//Visualizing f(x) = x
 		for (int i = 0; i < resolution; i++) {
 			Transform point = Instantiate(pointPrefab);
@@ -39,6 +39,9 @@ public class Graph : MonoBehaviour {
 
 			//Bringing back the cubes together so there is no overlap
 			point.localScale = scale;
+
+			//Make the clones children
+			point.SetParent(transform, false);
 		}
 	}
 }
