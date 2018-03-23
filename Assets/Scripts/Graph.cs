@@ -7,6 +7,10 @@ public class Graph : MonoBehaviour {
 	public Transform pointPrefab;
 
 	void Awake () {
-		Instantiate(pointPrefab);
+		
+		for (int i = 0; i < 10; i++) {
+			Transform point = Instantiate(pointPrefab);
+			point.localPosition = Vector3.right * i;
+		}
 	}
 }
