@@ -18,7 +18,7 @@ public class Graph : MonoBehaviour {
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
-            position.y = SineFunction(position.x, Time.time);
+            position.y = MultiSineFunction(position.x, Time.time);
 			point.localPosition = position;
 		}
 		
@@ -63,8 +63,19 @@ public class Graph : MonoBehaviour {
 		}
 	}
 
+    //Call this in Update() to visualize a sine function
     float SineFunction(float x, float t) {
         return Mathf.Sin(Mathf.PI * (x + t));
     }
+
+    //Call this in Update to visualize a complex a complex sine function
+    float MultiSineFunction(float x, float t)
+    {
+        float y = Mathf.Sin(Mathf.PI * (x + t));
+        y += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        y *= 2f / 3f;
+        return y;
+    }
+
 
 }
