@@ -34,7 +34,7 @@
 		UNITY_INSTANCING_BUFFER_END(Props)
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			
+			o.Albedo.rg = (IN.worldPos.xy + 1) / 2;
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 			o.Alpha = 1;
