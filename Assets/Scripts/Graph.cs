@@ -11,11 +11,11 @@ public class Graph : MonoBehaviour {
 		for (int i = 0; i < 11; i++) {
 			Transform point = Instantiate(pointPrefab);
 			
-			point.localPosition = Vector3.right * i;
+			//Cubes span a range of -1 to 1 on the axis
+			point.localPosition = Vector3.right * ((i / 5f) - 1f);
 
+			//Bringing back the cubes together so there is no overlap
 			point.localScale = Vector3.one / 5f;
-
-			point.localPosition = Vector3.right * i / 5f;
 		}
 	}
 }
