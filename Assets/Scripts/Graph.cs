@@ -23,20 +23,20 @@ public class Graph : MonoBehaviour {
 		
         float t = Time.time;
 
+        //Assigning the right function
+        GraphFunction f;
+        if (function == 0) {
+            f = SineFunction;
+        }
+        else {
+            f = MultiSineFunction;
+        }
+
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
 
-            //Choose which functino to visualize
-            if (function == 0) {
-
-                position.y = SineFunction(position.x, t);
-            }
-            else {
-
-                position.y = MultiSineFunction(position.x, t);
-            }
-
+            position.y = f(position.x, t);
 			point.localPosition = position;
 		}
 		
