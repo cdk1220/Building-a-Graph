@@ -60,31 +60,39 @@ public class Graph : MonoBehaviour {
 
 		//Constant as we dont deal with the z plane
 		position.y = 0;
-		position.z = 0;     
-		
-		//Create enough points for a grid, as many lines as the number of points
-        for (int i = 0, x = 0, z = 0; i < resolution * resolution; i++, x++) {
-			Transform point = Instantiate(pointPrefab);
+		position.z = 0;
 
-            if (x == resolution) {
-                x = 0;
-                z += 1;
+        //Create enough points for a grid, as many lines as the number of points
+        for (int i = 0, z = 0; i < resolution; i++, z++)
+        {
+            //Rows are along y
+            position.z = ((z * step) - 1f);
+
+            for (int x = 0; x < resolution; x++)
+            {
+                Transform point = Instantiate(pointPrefab);
+
+                if (x == resolution)
+                {
+                    x = 0;
+                    z += 1;
+                }
+
+                //Points are along 
+                position.x = ((x * step) - 1f);
+
+                point.localPosition = position;
+
+                //Bringing back the cubes together so there is no overlap
+                point.localScale = scale;
+
+                //Make the clones children
+                point.SetParent(transform, false);
+
+                //Add created cube to the list
+                points.Add(point);
             }
-			
-			//Position for f(x) = x
-			position.x = ((x * step)  - 1f);
-            position.z = ((z * step)  - 1f);
-			point.localPosition = position;
-
-			//Bringing back the cubes together so there is no overlap
-			point.localScale = scale;
-
-			//Make the clones children
-			point.SetParent(transform, false);
-
-			//Add created cube to the list
-			points.Add(point);
-		}
+        }
 	}
 
     //Call this in Update() to visualize a sine function
