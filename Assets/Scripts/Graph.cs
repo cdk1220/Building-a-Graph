@@ -9,11 +9,10 @@ public class Graph : MonoBehaviour {
 
     //Number instantiated which can now be changed in the IDE
 	[Range(15, 105)]
-	public int resolution = 15;		 
+	public int resolution = 15;
 
-    //Gives the option to change between functions on the fly
-    [Range(0, 1)]
-    public int function;
+    //Using enumerations to change the function on the fly
+    public GraphFunctionName function;
 
 	//List to contain points created
 	List<Transform> points = new List<Transform>();
@@ -31,7 +30,7 @@ public class Graph : MonoBehaviour {
         float t = Time.time;
 
         //Choosing the right function
-        GraphFunction f = functions[function];
+        GraphFunction f = functions[(int)function];
 
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
