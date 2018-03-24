@@ -20,8 +20,12 @@ public class Graph : MonoBehaviour {
     //List of functions that we can visualize
     static GraphFunction[] functions = {
         SineFunction,
-        MultiSineFunction
+        MultiSineFunction,
+        Sine2DFunction
     };
+
+    //Since pi is used alot created a const
+    const float pi = Mathf.PI;
 
     //Calls every frame
 	void Update() {
@@ -97,17 +101,20 @@ public class Graph : MonoBehaviour {
 
     //Call this in Update() to visualize a sine function
     static float SineFunction(float x, float z, float t) {
-        return Mathf.Sin(Mathf.PI * (x + t));
+        return Mathf.Sin(pi * (x + t));
     }
 
     //Call this in Update to visualize a complex a complex sine function
     static float MultiSineFunction(float x, float z, float t)
     {
-        float y = Mathf.Sin(Mathf.PI * (x + t));
-        y += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
+        float y = Mathf.Sin(pi * (x + t));
+        y += Mathf.Sin(2f * pi * (x + 2f * t)) / 2f;
         y *= 2f / 3f;
         return y;
     }
 
-
+    //Call this to visualize a 2D function
+    static float Sine2DFunction (float x, float z, float t) {
+        return Mathf.Sin(pi * (x + z + t));
+    }
 }
