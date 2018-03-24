@@ -18,19 +18,20 @@ public class Graph : MonoBehaviour {
 	//List to contain points created
 	List<Transform> points = new List<Transform>();
 
+    //List of functions that we can visualize
+    static GraphFunction[] functions = {
+        SineFunction,
+        MultiSineFunction
+    };
+
     //Calls every frame
 	void Update() {
 		
+        //Time elapsed
         float t = Time.time;
 
-        //Assigning the right function
-        GraphFunction f;
-        if (function == 0) {
-            f = SineFunction;
-        }
-        else {
-            f = MultiSineFunction;
-        }
+        //Choosing the right function
+        GraphFunction f = functions[function];
 
 		for (int i = 0; i < resolution; i++) {
 			Transform point = points[i];
