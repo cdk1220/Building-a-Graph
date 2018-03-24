@@ -32,7 +32,7 @@ public class Graph : MonoBehaviour {
         //Choosing the right function
         GraphFunction f = functions[(int)function];
 
-		for (int i = 0; i < resolution; i++) {
+        for (int i = 0; i < resolution * resolution; i++) {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
 
@@ -62,12 +62,18 @@ public class Graph : MonoBehaviour {
 		position.y = 0;
 		position.z = 0;     
 		
-		//Visualizing f(x) = x
-		for (int i = 0; i < resolution; i++) {
+		//Create enough points for a grid, as many lines as the number of points
+        for (int i = 0, x = 0, z = 0; i < resolution * resolution; i++, x++) {
 			Transform point = Instantiate(pointPrefab);
+
+            if (x == resolution) {
+                x = 0;
+                z += 1;
+            }
 			
 			//Position for f(x) = x
-			position.x = ((i * step)  - 1f);
+			position.x = ((x * step)  - 1f);
+            position.z = ((z * step)  - 1f);
 			point.localPosition = position;
 
 			//Bringing back the cubes together so there is no overlap
