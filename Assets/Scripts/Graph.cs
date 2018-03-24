@@ -36,7 +36,7 @@ public class Graph : MonoBehaviour {
 			Transform point = points[i];
 			Vector3 position = point.localPosition;
 
-            position.y = f(position.x, t);
+            position.y = f(position.x, position.z, t);
 			point.localPosition = position;
 		}
 		
@@ -82,12 +82,12 @@ public class Graph : MonoBehaviour {
 	}
 
     //Call this in Update() to visualize a sine function
-    static float SineFunction(float x, float t) {
+    static float SineFunction(float x, float z, float t) {
         return Mathf.Sin(Mathf.PI * (x + t));
     }
 
     //Call this in Update to visualize a complex a complex sine function
-    static float MultiSineFunction(float x, float t)
+    static float MultiSineFunction(float x, float z, float t)
     {
         float y = Mathf.Sin(Mathf.PI * (x + t));
         y += Mathf.Sin(2f * Mathf.PI * (x + 2f * t)) / 2f;
